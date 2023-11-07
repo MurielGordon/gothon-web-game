@@ -10,7 +10,7 @@ config = {
     'download_url': 'https://github.com/MurielGordon/gothon-web-game',
     'author_email': 'murielgordon6@gmail.com',
     'version': '0.1',
-    'install_requires': ['flask'],
+    'install_requires': ['flask, werkzeug'],
     'packages': ['NAME'],
     'scripts': [],
     'name': 'gothonweb'
