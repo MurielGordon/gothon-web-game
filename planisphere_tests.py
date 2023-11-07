@@ -1,8 +1,8 @@
 import unittest
-from gothonweb.planisphere import Room
+from gothonweb.planisphere import *
 
 
-class Test(unittest.TestCase):
+class TestRoom(unittest.TestCase):
     def test_room(self):
         gold = Room("GoldRoom",
                     """This room has gold in it you can grab. There's a
@@ -10,6 +10,7 @@ class Test(unittest.TestCase):
         self.assertEqual(gold.name, "GoldRoom")
         self.assertEqual(gold.paths, {})
 
+class TestRoomPaths(unittest.TestCase):
     def test_room_paths(self):
         center = Room("Center", "Test room in the center.")
         north = Room("North", "Test room in the north.")
@@ -19,6 +20,7 @@ class Test(unittest.TestCase):
         self.assertEqual(center.go('north'), north)
         self.assertEqual(center.go('south'), south)
 
+class TestMap(unittest.TestCase):
     def test_map(self):
         start = Room("Start", "You can go west and down a hole.")
         west = Room("Trees", "There are trees here, you can go east.")
@@ -31,6 +33,15 @@ class Test(unittest.TestCase):
         self.assertEqual(start.go('west'), west)
         self.assertEqual(start.go('west').go('east'), start)
         self.assertEqual(start.go('down').go('up'), start)
+
+class TestGothonGameMap(unittest.TestCase):
+    def test_gothon_game_map(self):
+        start_room = load_room(START)
+        self.assertEqual(start_room.go('shoot!'), generic_death)
+        self.assertEqual(start_room.go('dodge!'), generic_death)
+
+        room = start_room.go('tell a joke')
+        self.assertEqual(room, laser_weapon_armory)
 
 
 if __name__ == "__main__":
