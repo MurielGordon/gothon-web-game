@@ -79,7 +79,7 @@ There are 5 pods, which one do you take?
 
 the_end_winner = Room("The End",
 """
-You jump into pod 2 and hit the eject button. The pod easilt slides out into space heading to
+You jump into pod 2 and hit the eject button. The pod easily slides out into space heading to
 the planet below. As it flies to the planet, you look back and see your ship implode then explode
 like a bright star, taking out the Gothon ship at the same time. You won!
 """
@@ -131,6 +131,6 @@ def name_room(room):
     Same possible security problem. Can you trust room?
     What's a better solution than this globals lookup?
     """
-    for key_value in globals().items():
+    for key, value in globals().items():
         if value == room:
             return key
