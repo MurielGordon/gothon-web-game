@@ -1,7 +1,7 @@
 from flask import Flask, session, redirect, url_for, request 
 from markupsafe import escape
 from flask import render_template
-from gothonweb import planisphere 
+import gothonweb.gothonweb.planisphere as planisphere 
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def game():
     
 
 # DELETE BEFORE PUSH
-app.secret_key = '*****'
+app.secret_key = '******'
 
 if __name__ == "__main__":
     app.run()
