@@ -10,4 +10,7 @@
 - In zsh, [Command Substitution](https://zsh.sourceforge.io/Doc/Release/Expansion.html#Command-Substitution) result performs word splitting if not enclosed in double quotes. So if your command substitution result contain any whitespace, tab, or newline, the export command will be broken into parts.
 - [Fix:](https://unix.stackexchange.com/questions/208607/zsh-export-not-valid-in-this-context) instead of export PYTHONPATH=$PYTHONPATH: .
 - Use export **PYTHONPATH=$PYTHONPATH:"."** instead
+> Weird import issue with app.py: importing planisphere.py into app.py doesn't appear to work
+- Fix (allegedly): [use sys.path.append](https://ioflood.com/blog/python-import-from-another-directory/) to tell your machine to look in a different directory for the goods to run a file
+- Why is this only an "alleged" fix? Because the issue below is still present --v
 > First room works but submission of answer doesn't result in any change
