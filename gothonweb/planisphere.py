@@ -1,3 +1,5 @@
+#from sys import exit
+
 class Room(object):
 
     def __init__(self, name, description):
@@ -93,26 +95,64 @@ implodes as the hull ruptures, crushing your body into jam jelly.
 """
 )
 
+generic_death = Room("death", "You died.") 
+
+shoot_death = Room("You chose poorly.", 
+"""
+Quick on the draw you yank out your blaster and fire
+it at the Gothon.  His clown costume is flowing and
+moving around his body, which throws off your aim.
+Your laser hits his costume but misses him entirely.
+This completely ruins his brand new costume his mother
+bought him, which makes him fly into an insane rage
+and blast you repeatedly in the face until you are
+dead.  Then he eats you.
+"""
+)
+
+dodge_death = Room("You chose poorly.",
+"""
+Like a world class boxer you dodge, weave, slip and slide right as the Gothon's blaster
+cranks a laser past your head. In the middle of your artful dodge your foot slips and
+you bang your head on the metal wall and pass out. You wake up shortly after only to die
+as the Gothon stomps on your head and eats you.
+"""                   
+)
+
+code_death = Room("You chose poorly.",
+"""
+The lock buzzes one last time and then you hear a sickening melting sound as the mechanism is 
+fused together. You decide to sit there, and finally the Gothons blow up the ship from their
+ship and you die.
+"""
+)
+
+bomb_death = Room("You chose poorly.",
+"""
+In a panic you throw the bomb at the group of Gothons and make a leap for the door. Right as you
+drop it a Gothon shoots you right in the back killing you. As you die you see another Gothon
+franticallt try to disarm the bomb. You die knowing they will probably blow up when it goes off.
+"""                                    
+)
+
 escape_pod.add_paths({
     '2': the_end_winner,
     '*': the_end_loser
 })
 
-generic_death = Room("death", "You died.")
-
 the_bridge.add_paths({
-    'throw the bomb': generic_death,
-    'slowly place the bomb': escape_pod
+    'throw the bomb': bomb_death,
+    'place bomb gently': escape_pod
 })
 
 laser_weapon_armory.add_paths({
-    '0123': the_bridge,
-    '*': generic_death
+    '123': the_bridge,
+    '*': code_death
 })
 
 central_corridor.add_paths({
-    'shoot!': generic_death,
-    'dodge!': generic_death,
+    'shoot!': shoot_death,
+    'dodge!': dodge_death,
     'tell a joke': laser_weapon_armory
 })
 
@@ -134,3 +174,26 @@ def name_room(room):
     for key, value in globals().items():
         if value == room:
             return key
+        
+
+#def load_room(name):
+#    whitelist = [
+#        "central_corridor", "laser_weapon_armory", "the_bridge", "escape_pod", "the_end_winner",
+#        "the_end_loser", "generic_death"
+#    ]
+#    if name in whitelist:
+#        return globals().get(name)
+#    else:
+#        exit(0)
+
+#def name_room(room):
+#    whitelist = [
+#        central_corridor, laser_weapon_armory, the_bridge, escape_pod, the_end_winner,
+#        the_end_loser, generic_death
+#    ]
+#    if room in whitelist:
+#        for key, value in globals().items():
+#            if value == room:
+#                return key
+#    else:
+#        exit(0)
