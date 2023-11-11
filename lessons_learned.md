@@ -14,3 +14,5 @@
 - Fix (allegedly): [use sys.path.append](https://ioflood.com/blog/python-import-from-another-directory/) to tell your machine to look in a different directory for the goods to run a file
 - Why is this only an "alleged" fix? Because the issue below is still present --v
 > First room works but submission of answer doesn't result in any change
+- Fix: /templates/show_room.html, line 15: 
+- **form method** needed to not be **form mehtod**. Yes. That's right. I spent nearly 2 hours in my .py files trying to fix something that was just a typo in one of my templates.
