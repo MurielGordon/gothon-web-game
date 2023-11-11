@@ -1,4 +1,5 @@
 ## In which we document every single thing we learned with very little organization
+1. It's a good idea to have a copy of each of your files in their original state so that you can compare and contrast to improvements as you make them.
 
 ## The error messages and their corresponding fixes
 > ImportError: cannot import name 'escape' from 'flask'
