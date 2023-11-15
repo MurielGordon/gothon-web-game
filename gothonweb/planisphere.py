@@ -146,14 +146,14 @@ the_bridge.add_paths({
 })
 
 laser_weapon_armory.add_paths({
-    '123': the_bridge,
+    "666": the_bridge,
     '*': code_death
 })
 
 central_corridor.add_paths({
     'shoot!': shoot_death,
     'dodge!': dodge_death,
-    'tell a joke': laser_weapon_armory
+    'tell a joke': laser_weapon_armory,
 })
 
 START = 'central_corridor'
