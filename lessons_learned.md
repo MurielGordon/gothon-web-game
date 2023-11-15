@@ -17,3 +17,6 @@
 > First room works but submission of answer doesn't result in any change
 - Fix: /templates/show_room.html, line 15: 
 - **form method** needed to not be **form mehtod**. Yes. That's right. I spent nearly 2 hours in my .py files trying to fix something that was just a typo in one of my templates.
+
+## Where I left off
+Cannot for the life of me get the wildcard input option to work for these rooms. If a there is no specific path to get to the death room (i.e. you type "shoot!" in the first room) nothing changes when you submit your answer.
