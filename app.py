@@ -1,9 +1,6 @@
 from flask import Flask, session, redirect, url_for, request 
-from markupsafe import escape
 from flask import render_template
-import sys
-sys.path.append('*****')
-import planisphere
+from gothonweb import planisphere
 
 
 
@@ -23,9 +20,9 @@ def game():
         if room_name:
             room = planisphere.load_room(room_name)
             return render_template("show_room.html", room=room)
-        else:
+        #else:
             # why is this here? do you need it?
-            return render_template("you_died.html")
+        #    return render_template("you_died.html")
     else:
         action = request.form.get('action')
 
@@ -37,12 +34,15 @@ def game():
                 session['room_name'] = planisphere.name_room(room)
             else:
                 session['room_name'] = planisphere.name_room(next_room)
+            if not next_room:
+                return render_template("you_died.html")
 
         return redirect(url_for("game"))
     
 
 # DELETE BEFORE PUSH
-app.secret_key = '*******'
+app.secret_key = '*****'
 
 if __name__ == "__main__":
+    app.debug = True
     app.run()
