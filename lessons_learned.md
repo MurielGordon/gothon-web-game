@@ -20,6 +20,6 @@
 > Death paths without specific defined path (i.e. "else, this") not sending user to death room. User spat back out onto the same page where they submitted their answer
 - Fix: add another if-statement to the "action = request.form.get('action')" else-statement:
 - **if not next_room:**
--     **return render_template("you_died.html")**
+-    **return render_template("you_died.html")**
 
 ## Where I left off
