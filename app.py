@@ -41,7 +41,7 @@ def game():
     
 
 # DELETE BEFORE PUSH
-app.secret_key = '*****'
+app.secret_key = 'b\x90\xd6RI\xbe\xdc\xb8"\x15:\xfe\x1d'
 
 if __name__ == "__main__":
     app.debug = True
