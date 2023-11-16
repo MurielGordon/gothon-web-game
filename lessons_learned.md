@@ -23,3 +23,4 @@
 -    **return render_template("you_died.html")**
 
 ## Where I left off
+Trying to make intermediary "guess again" and "final chance" rooms for code room. Doing this with a simplified set of files.
