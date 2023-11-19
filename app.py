@@ -8,8 +8,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    # this is used to "setup" the session with starting values
     session['room_name'] = planisphere.START
+    session['count'] = 0
     return redirect(url_for("game"))
 
 @app.route("/game", methods=['GET', 'POST'])
@@ -20,28 +20,38 @@ def game():
         if room_name:
             room = planisphere.load_room(room_name)
             return render_template("show_room.html", room=room)
-        #else:
-            # why is this here? do you need it?
-        #    return render_template("you_died.html")
-    else:
-        action = request.form.get('action')
-
+    
+    else: 
+        action = request.form.get('action')    
+    
         if room_name and action:
             room = planisphere.load_room(room_name)
             next_room = room.go(action)
 
-            if not next_room:
+
+            if not next_room and action == '':
                 session['room_name'] = planisphere.name_room(room)
+
+            elif not next_room and room_name == 'laser_weapon_armory' and session['count'] < 9:
+                session['count'] += 1
+                next_room = room.go('stay')
+                session['room_name'] = planisphere.name_room(next_room)
+
+            elif not next_room:
+                next_room = room.go('*')
+                session['room_name'] = planisphere.name_room(next_room)    
+
             else:
                 session['room_name'] = planisphere.name_room(next_room)
+            
             if not next_room:
                 return render_template("you_died.html")
-
-        return redirect(url_for("game"))
+        
+    return redirect(url_for("game"))    
     
 
 # DELETE BEFORE PUSH
-app.secret_key = 'b\x90\xd6RI\xbe\xdc\xb8"\x15:\xfe\x1d'
+app.secret_key = '******'
 
 if __name__ == "__main__":
     app.debug = True
