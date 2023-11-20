@@ -28,30 +28,27 @@ def game():
             room = planisphere.load_room(room_name)
             next_room = room.go(action)
 
+        if not next_room and action == '':
+            session['room_name'] = planisphere.name_room(room)
 
-            if not next_room and action == '':
-                session['room_name'] = planisphere.name_room(room)
+        #elif not next_room and room_name == 'laser_weapon_armory' and session['count'] < 9:
+        #    session['count'] += 1
+            #stay = (request.form.get('action') != '666')
+        #    next_room = room.go('stay')
+        #    session['room_name'] = planisphere.name_room(next_room)
 
-            elif not next_room and room_name == 'laser_weapon_armory' and session['count'] < 9:
-                session['count'] += 1
-                next_room = room.go('stay')
-                session['room_name'] = planisphere.name_room(next_room)
+        elif not next_room:
+            next_room = room.go('*')
+            session['room_name'] = planisphere.name_room(next_room)    
 
-            elif not next_room:
-                next_room = room.go('*')
-                session['room_name'] = planisphere.name_room(next_room)    
-
-            else:
-                session['room_name'] = planisphere.name_room(next_room)
-            
-            if not next_room:
-                return render_template("you_died.html")
+        else:
+            session['room_name'] = planisphere.name_room(next_room)
         
     return redirect(url_for("game"))    
     
 
 # DELETE BEFORE PUSH
-app.secret_key = '******'
+app.secret_key = '*****'
 
 if __name__ == "__main__":
     app.debug = True
