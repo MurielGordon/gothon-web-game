@@ -24,3 +24,4 @@
 
 ## Where I left off
 Trying to make intermediary "guess again" and "final chance" rooms for code room. Doing this with a simplified set of files.
+Why is laser_weapon_armory triggering the catchall you_died.html condition but escape_pod isn't, despite their paths being written identically?
