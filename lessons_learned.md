@@ -21,7 +21,8 @@
 - Fix: add another if-statement to the "action = request.form.get('action')" else-statement:
 - **if not next_room:**
 -    **return render_template("you_died.html")**
+> The death for laser_weapon_armory behaves different from the death for the pods, despite being written the same
+- Fix: not really a fix so much as I found the problem: introducing the session count code for laser_weapon_armory caused the generic death ending to be called.
 
 ## Where I left off
 Trying to make intermediary "guess again" and "final chance" rooms for code room. Doing this with a simplified set of files.
-Why is laser_weapon_armory triggering the catchall you_died.html condition but escape_pod isn't, despite their paths being written identically?
