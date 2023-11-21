@@ -1,4 +1,5 @@
 #from sys import exit
+import app
 
 class Room(object):
 
@@ -44,6 +45,25 @@ the neutron bomb in its container.
 There's a keypad lock on the box and you need the core to get the bomb out. If you get the code
 wrong 10 times then the lock closes forever and you can't get the bomb. The code is 3 digits.
 """
+)
+
+guess_again = Room("Guess Again",
+"""
+BZZZZEDDD!
+
+You got it wrong. Remember, you only have 10 chances to make this work. 
+"""                   
+)
+
+final_guess = Room("Final Guess",
+"""
+BZZZZEDDD!
+
+You got it wrong again. This is your last chance to try. 
+
+
+Hint: Think of a diabolically hot number
+"""                   
 )
 
 
@@ -95,7 +115,7 @@ implodes as the hull ruptures, crushing your body into jam jelly.
 """
 )
 
-generic_death = Room("death", "You died.") 
+#generic_death = Room("death", "You died.") 
 
 shoot_death = Room("You chose poorly.", 
 """
@@ -131,7 +151,7 @@ bomb_death = Room("You chose poorly.",
 """
 In a panic you throw the bomb at the group of Gothons and make a leap for the door. Right as you
 drop it a Gothon shoots you right in the back killing you. As you die you see another Gothon
-franticallt try to disarm the bomb. You die knowing they will probably blow up when it goes off.
+frantically try to disarm the bomb. You die knowing they will probably blow up when it goes off.
 """                                    
 )
 
@@ -145,9 +165,19 @@ the_bridge.add_paths({
     'place bomb gently': escape_pod
 })
 
-laser_weapon_armory.add_paths({
+final_guess.add_paths({
     "666": the_bridge,
-    '*': code_death
+    "*": code_death
+})
+
+guess_again.add_paths({
+    "666": the_bridge,
+    '*': final_guess
+})
+
+laser_weapon_armory.add_paths({
+    '666': the_bridge,
+    '*': guess_again
 })
 
 central_corridor.add_paths({
